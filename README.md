@@ -1,0 +1,2 @@
+# qr
+generate QR ascii
