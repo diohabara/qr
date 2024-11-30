@@ -1,32 +1,37 @@
 # Variables
-CXX = g++
-CXXFLAGS = -Wall -Wextra -std=c++17
-SRCDIR = src
-BUILDDIR = build
-TARGET = qr
+BUILD_DIR := build
+CMAKE := cmake
+EXECUTABLE_QR := $(BUILD_DIR)/qr
+EXECUTABLE_TEST := $(BUILD_DIR)/qr_test
+CTEST := ctest
 
-# Source and build files
-SRC = $(SRCDIR)/qr.cc
-OBJ = $(BUILDDIR)/qr.o
+# Targets
+.PHONY: all build clean test run run-qr
 
 # Default target
-all: $(TARGET)
+all: build
 
-# Build target
-$(TARGET): $(OBJ)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJ)
+# Build the project using CMake
+build:
+	@$(CMAKE) -S . -B $(BUILD_DIR)
+	@$(CMAKE) --build $(BUILD_DIR)
 
-# Compile source files
-$(BUILDDIR)/%.o: $(SRCDIR)/%.cc
-	@mkdir -p $(BUILDDIR)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
-# Clean build files
+# Clean the build directory
 clean:
-	rm -rf $(BUILDDIR) $(TARGET)
+	@$(CMAKE) --build $(BUILD_DIR) --target clean || true
+	@rm -rf $(BUILD_DIR)
 
-# Run the program
-run: $(TARGET)
-	./$(TARGET)
+# Run tests using CTest
+test: build
+	@$(CTEST) --test-dir $(BUILD_DIR)
 
-.PHONY: all clean run
+# Run the qr_test executable
+run:
+	@$(EXECUTABLE_TEST)
+
+# Build and run the main qr executable
+run-qr: build
+	@$(EXECUTABLE_QR)
+
+fmt:
+	clang-format -i *.cc *.h

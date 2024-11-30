@@ -66,6 +66,24 @@
     "system_error": "cpp",
     "type_traits": "cpp",
     "utility": "cpp",
-    "numbers": "cpp"
-  }
+    "numbers": "cpp",
+    "any": "cpp",
+    "charconv": "cpp",
+    "chrono": "cpp",
+    "condition_variable": "cpp",
+    "forward_list": "cpp",
+    "list": "cpp",
+    "map": "cpp",
+    "set": "cpp",
+    "unordered_set": "cpp",
+    "format": "cpp",
+    "fstream": "cpp",
+    "iomanip": "cpp",
+    "semaphore": "cpp",
+    "span": "cpp",
+    "stop_token": "cpp",
+    "thread": "cpp",
+    "cinttypes": "cpp"
+  },
+  "C_Cpp.errorSquiggles": "enabled"
 }

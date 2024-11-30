@@ -6,14 +6,22 @@
 
 ## Usage
 
+### Build & Run
+
 Build
 
 ```sh
 make # build the qr
 ```
 
-Convert text to QR code
+Convert text into QR code
 
 ```sh
 ./qr "Hello, World!"
+```
+
+### Test
+
+```sh
+make test
 ```

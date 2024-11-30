@@ -66,3 +66,4 @@ dkms.conf
 
 # specific to this software
 qr
+build/
